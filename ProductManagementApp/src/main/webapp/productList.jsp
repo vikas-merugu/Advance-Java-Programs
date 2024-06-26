@@ -13,8 +13,8 @@ import="java.util.Base64"%>
 
 </head>
 
-<body>
-<h1 class="text-center text-danger">List Of Products</h1>
+<body style="background-image: url('bg2.jpg');">
+<h2 class="text-center font-italic mb-1">LIST OF PRODUCTS</h2>
 
 <div class="btn btn-success"><a href="add-product.html">save product</a>
 
@@ -55,6 +55,7 @@ import="java.util.Base64"%>
 <th>Expire Date</th>
 <th>Image</th>
 <th>Action</th>
+<th>Edit</th>
 </tr>
 </thead>
 

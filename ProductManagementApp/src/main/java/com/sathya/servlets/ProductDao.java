@@ -73,31 +73,30 @@ public static int deleteById(String proId) {
 
 
 
-public Product  findById(String proId){
-	Product p=null;
-	try(Connection c=ProductC.createConnection())
-	{
-		PreparedStatement ps=c.prepareStatement("select * from product where proId=?");
-		ps.setString(1, proId);
-		
-		ResultSet set=ps.executeQuery();
-		if(set.next()) {
-			 p=new Product();
-			p.setProId(set.getString(1));
-			p.setProName(set.getString(2));
-			p.setProPrice(set.getDouble(3));
-			p.setProBrand(set.getString(4));
-			p.setProMadeIn(set.getString(5));
-			p.setProMfg(set.getDate(6));
-			p.setProExp(set.getDate(7));
-			
-			
-		}
-		}catch(SQLException s) {
-			s.printStackTrace();
-		}
-	return p;
-	}
+public Product findById(String proId) {
+    Product p = null;
+    try (Connection c = ProductC.createConnection()) {
+        PreparedStatement ps = c.prepareStatement("select * from product where proId=?");
+        ps.setString(1, proId);
+
+        ResultSet set = ps.executeQuery();
+        if (set.next()) {
+            p = new Product();
+            p.setProId(set.getString(1));
+            p.setProName(set.getString(2));
+            p.setProPrice(set.getDouble(3));
+            p.setProBrand(set.getString(4));
+            p.setProMadeIn(set.getString(5));
+            p.setProMfg(set.getDate(6));
+            p.setProExp(set.getDate(7));
+            p.setProImage(set.getBytes(8)); // Ensure the image is retrieved
+        }
+    } catch (SQLException s) {
+        s.printStackTrace();
+    }
+    return p;
+}
+
 public int updateById(Product p) {
 	String sql="UPDATE product SET proName=?, proPrice=?, proBrand=?, proMadeIn=?, proMfg=?, proExp=?, proImage=? WHERE proId=?";
 	int updateResult=0;
